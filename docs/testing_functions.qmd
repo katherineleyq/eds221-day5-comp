@@ -42,3 +42,29 @@ expect_type(mean_range(mtcars), "double")
 # mean_range() should return 2 values: 1st value should be smaller than 2nd value
 expect_true(mean_range(mtcars)[1] <= mean_range(mtcars)[2])
 ```
+
+## Sourcing code
+
+You just created a function called name_cart() and stored it in /src/
+
+```{r}
+source(here::here("src", "name_cart.R"))
+
+name_cart("pizza", "shark")
+```
+
+There's an existing R script called cork_oak_growth.R in the src folder.
+
+```{r}
+source(here::here("src", "cork_oak_growth.R"))
+
+height_t2(20, 4, 19)
+```
+
+To create documentation to your .R scripts:
+
+-   press anywhere within the function within the .R script
+
+-   Press code in top left corner
+
+-   Then select "Insert Roxygen skeleton"
