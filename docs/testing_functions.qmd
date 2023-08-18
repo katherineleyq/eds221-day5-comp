@@ -1,0 +1,44 @@
+---
+title: "testing_functions"
+format: html
+editor: visual
+execute: 
+    warning: FALSE
+---
+
+```{r}
+# install.packages(c("testthat", "devtools", "remotes"))
+library(testthat)
+library(devtools)
+library(remotes)
+```
+
+## Write a function
+
+```{r}
+mean_range <- function(df) {
+  col_means <- apply(X = df, MARGIN = 2, FUN = mean, na.rm = TRUE)
+  col_mean_max <- max(col_means)
+  col_mean_min <- min(col_means)
+  return(c(col_mean_min, col_mean_max))
+}
+
+mean_range(mtcars)
+
+mean_range(faithful)
+```
+
+## Testing the function
+
+write some unit tests
+
+```{r}
+# mean_range() should return a range of 2 so to test:
+expect_length(mean_range(mtcars), 2)
+
+# mean_range() should always be numeric
+expect_type(mean_range(mtcars), "double")
+
+# mean_range() should return 2 values: 1st value should be smaller than 2nd value
+expect_true(mean_range(mtcars)[1] <= mean_range(mtcars)[2])
+```
